@@ -1,0 +1,43 @@
+package vn.com.intern.restaurent.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Table(name = "posts")
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ps_id", nullable = false)
+    private long ps_id;
+
+    @Column(name = "ps_title")
+    private String ps_title;
+
+    @Column(name = "ps_thumbnail_link")
+    private String ps_thumbnail_link;
+
+    @Column(name = "ps_create_date", length = 200)
+    private String ps_create_date;
+
+    @Column(name = "ps_published")
+    private int ps_published;
+
+    @ManyToOne
+    @JoinColumn(name = "cf_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "us_id")
+    private User user;
+
+//    @ManyToOne
+//    @JoinColumn(name = "vehicle_request_id")
+//    private VehicleRequest vehicleRequest;
+}
